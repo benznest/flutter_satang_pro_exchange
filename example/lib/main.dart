@@ -4,7 +4,12 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_exchange.dart';
 
-void main() => runApp(MyApp());
+Future main() async {
+  SatangProExchangeService sp = SatangProExchangeService();
+  await sp.fetchMarketOpenOrders(printJson: true);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -12,7 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
