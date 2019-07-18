@@ -18,7 +18,11 @@ class SatangProExchangeService {
   static const String END_POINT_MARKET_OPEN_ORDERS = "orders/";
 
   /// Private API
-  static const String END_POINT_WALLET_BALANCE = "market/balances/";
+  static const String END_POINT_USER_INFORMATION = "users/";
+
+  /// User Id , You can get this id on developer menu.
+  /// [https://satang.pro/developers]
+  int userId;
 
   ///
   ///
@@ -30,13 +34,31 @@ class SatangProExchangeService {
   ///
   SatangProApiKey apiKeyGeneral;
 
-  SatangProExchangeService({this.apiKeyGeneral});
+  SatangProExchangeService({this.userId, this.apiKeyGeneral});
 
   /// This is a [public] api.
   /// Get market open order bids and asks.
   Future<SatangProMarketOpenOrdersDao> fetchMarketOpenOrders({String pair = "btc_thb", bool printJson = false}) async {
     String url = Uri.https(BASE_URL, POINT_API + END_POINT_MARKET_OPEN_ORDERS, {"pair": pair}).toString();
     http.Response response = await http.get(url);
+    var jsonResponse = json.decode(response.body);
+    SatangProMarketOpenOrdersDao dao = SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
+    if (printJson) {
+      print(url);
+      printPrettyJson(dao.toJson());
+    }
+    return dao;
+  }
+
+  /// This is a [private] api.
+  /// Get user's wallet info.
+  Future<SatangProMarketOpenOrdersDao> fetchUserInformation({bool printJson = false}) async {
+
+    String payload = "Nonce=${getNonce()}";
+
+
+    String url = Uri.https(BASE_URL, POINT_API + END_POINT_USER_INFORMATION+"/$userId").toString();
+    http.Response response = await http.get(url,headers: {"Signature":"","Authentication":""});
     var jsonResponse = json.decode(response.body);
     SatangProMarketOpenOrdersDao dao = SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
     if (printJson) {
