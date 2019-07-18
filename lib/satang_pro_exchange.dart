@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart';
 import 'package:flutter_satang_pro_exchange/dao/market_open_order/satang_pro_market_open_orders_dao.dart';
+import 'package:flutter_satang_pro_exchange/satang_pro_auth_utils.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_utils.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,19 +53,25 @@ class SatangProExchangeService {
 
   /// This is a [private] api.
   /// Get user's wallet info.
-  Future<SatangProMarketOpenOrdersDao> fetchUserInformation({bool printJson = false}) async {
+  Future fetchUserInformation({bool printJson = false}) async {
+    int nonce = getNonce();
 
-    String payload = "Nonce=${getNonce()}";
-
-
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_USER_INFORMATION+"/$userId").toString();
-    http.Response response = await http.get(url,headers: {"Signature":"","Authentication":""});
-    var jsonResponse = json.decode(response.body);
-    SatangProMarketOpenOrdersDao dao = SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
+//    Map<String, String> payload = {"Nonce": "$nonce"};
+//    String payloadString = "Nonce=$nonce";
+//
+//    String signature = SatangProAuthUtils.generateSignature(apiKeyGeneral, payloadString);
+//    Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyGeneral);
+//    String url = Uri.https(BASE_URL, POINT_API + END_POINT_USER_INFORMATION + "$userId", payload).toString();
+//    http.Response response = await http.get(url, headers: header);
+//    var jsonResponse = json.decode(response.body);
+//    SatangProMarketOpenOrdersDao dao = SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
     if (printJson) {
-      print(url);
-      printPrettyJson(dao.toJson());
+//      print(url);
+//      print("signature = " + signature);
+//      print("header = " + header.toString());
+//      printPrettyJson(jsonResponse);
+    print(nonce);
     }
-    return dao;
+//    return dao;
   }
 }

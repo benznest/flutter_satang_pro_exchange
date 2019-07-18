@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:crypto/crypto.dart';
 
 void printPrettyJson(Map map) {
   JsonEncoder encoder = new JsonEncoder.withIndent('  ');
