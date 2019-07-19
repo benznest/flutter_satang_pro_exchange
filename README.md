@@ -26,7 +26,7 @@ var sp = SatangProExchangeService();
 ```
 
 
-### Open Order in Market
+### Get Open Order in Market
 
 Get market open order bids and asks.
 
@@ -59,10 +59,10 @@ Get price and amount in order.
 
 ## Prepare Private API
 
-Prepare 2 API keys with different permissions. and your USER ID.
-Go to [Developer Menu](https://satang.pro/developers) and create API KEY.
+Prepare 2 API keys with different permissions and trying to look your USER ID.
+Go to [Developer Menu](https://satang.pro/developers) then create API KEY.
 
-### 1. User Info API key \
+### 1. User Information API key
 
 This API key are used for reading general information, such as balance, wallet address.
 
@@ -97,7 +97,7 @@ var sp = SatangProExchangeService(
 Return user identity such as email, id , verify level and wallet.
 
 ```dart
-  var userInfo = await sp.fetchUserInformation(printJson: true);
+  var userInfo = await sp.fetchUserInformation();
   if(!userInfo.isError){
     // userInfo.email;
     // userInfo.id;
@@ -122,4 +122,52 @@ Get balance and address wallet.
 ```
 
 
+### Order List
 
+Get current order and order history.
+
+Order Type
+
+```dart
+SatangProOrderType.BUY
+SatangProOrderType.SELL
+```
+
+Using fetch orders.
+
+```dart
+  var myOrders = await sp.fetchOrders(pair: "btc_thb",orderType: SatangProOrderType.BUY);
+  if(!myOrders.isError){
+    for(var order in myOrders.orders){
+      // order.id;
+      // order.amount;
+      // order.price;
+      // order.type;
+      // order.status;
+      // order.remainingAmount;
+    }
+  }else{
+    // userInfo.error.code;
+    // userInfo.error.message;
+  }
+```
+
+### Create Order
+
+Create order to market.
+
+```dart
+  // create order BUY 0.0005 BTC with 100,000 THB
+  await sp.createOrder(pair: "btc_thb",
+      orderType: SatangProOrderType.BUY,
+      amount: 0.0005,
+      price: 100000);
+```
+
+### Cancel Order
+
+Cancel order with order id.
+
+```dart
+  await sp.cancelOrder(orderId: 1234567);
+```
