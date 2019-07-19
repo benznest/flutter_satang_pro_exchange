@@ -1,26 +1,47 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart';
+import 'package:flutter_satang_pro_exchange/dao/market_open_order/satang_pro_market_open_orders_dao.dart';
+import 'package:flutter_satang_pro_exchange/satang_pro_currency.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_exchange.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_order_type.dart';
 
 Future main() async {
-//  SatangProExchangeService sp = SatangProExchangeService(userId: 7892,
-//      apiKeyGeneral: SatangProApiKey(
-//          apiKey: "live-510d4e8081ec49fabcbc50e13e8db403",
-//          secret:"R3Wj9ar6Rfm95wOvF0bNDfGTl7Y+o0wai+wdyerzEFo="));
 
-  SatangProExchangeService sp = SatangProExchangeService(
+  var sp = SatangProExchangeService(
       userId: 7892,
-      apiKeyUserInfo: SatangProApiKey(apiKey: "live-0e693ba1952e4a618b5f4936a19afd7f", secret: "lJCTDXJTQm+0eLvXBZkiHZHD9E0OZUGAjipCh70OLDA="),
-      apiKeyOrder: SatangProApiKey(apiKey: "live-0e693ba1952e4a618b5f4936a19afd7f", secret: "lJCTDXJTQm+0eLvXBZkiHZHD9E0OZUGAjipCh70OLDA="));
+      apiKeyUserInfo: SatangProApiKey(apiKey: "", secret: ""),
+      apiKeyOrder: SatangProApiKey(apiKey: "", secret: ""));
 
-//  await sp.fetchUserInformation(printJson: true);
+  SatangProMarketOpenOrdersDao market = await sp.fetchMarketOpenOrders(pair: "btc_thb");
+  var bids = market.bids; // list sell order.
+  var asks = market.asks; // list buy order.
 
-  await sp.createOrder(orderType: SatangProOrderType.BUY,amount: 0.0005 ,price: 10000, printJson: true);
-  await sp.fetchOrders(orderType: SatangProOrderType.BUY,printJson: true);
+  var userInfo = await sp.fetchUserInformation(printJson: true);
+  if(!userInfo.isError){
+    // userInfo.email;
+    // userInfo.id;
+    // userInfo.identityVerificationLevel;
+     var wallets = userInfo.wallets.list;
+     for(var wallet in wallets){
+       wallet.currency;
+       wallet.availableBalance;
+       wallet.addresses;
+     }
+    // userInfo.identity;
+  }else{
+    // userInfo.error.code;
+    // userInfo.error.message;
+  }
+
+
+//  await sp.createOrder(pair: SatangProCurrency.BTC_THB,
+//      orderType: SatangProOrderType.BUY,
+//      amount: 0.0005,
+//      price: 10000,
+//      printJson: true);
+//  await sp.fetchOrders(orderType: SatangProOrderType.BUY, printJson: true);
 //  await sp.cancelOrder(orderId: 18916446, printJson: true);
 
   runApp(MyApp());

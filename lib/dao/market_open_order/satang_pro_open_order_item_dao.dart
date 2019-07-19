@@ -9,8 +9,7 @@ class SatangProOpenOrderItemDao{
   }
 
   Map<String, dynamic> toJson() {
-    return {"price": this.price, "amount": this.amount,};
+    return {"price": this.price, "amount": this.amount};
   }
-
 
 }

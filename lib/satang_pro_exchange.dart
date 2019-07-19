@@ -97,7 +97,7 @@ class SatangProExchangeService {
   }
 
   /// This is a [private] api.
-  /// Get current open orders.
+  /// Get orders (cancelled/open/created/completed).
   Future<SatangProUserOpenOrderDao> fetchOrders(
       {int limit = 100, int offset = 0, String pair = "btc_thb", SatangProOrderType orderType = SatangProOrderType.SELL, String status = "all", bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
@@ -177,33 +177,12 @@ class SatangProExchangeService {
     String url = Uri.https(BASE_URL, POINT_API + END_POINT_CREATE_ORDERS).toString();
     http.Response response = await http.post(url, headers: header, body: payload);
 
-//    SatangProUserOpenOrderDao openOrder;
-//    try {
-//    var jsonResponse = json.decode(response.body);
-    print(response.body);
-    print(payload);
-//      openOrder = SatangProUserOpenOrderDao.fromJson(jsonResponse);
-//    } catch (e) {
-//      var jsonResponse = json.decode(response.body);
-//      if (jsonResponse["Code"] != null) {
-//        openOrder = SatangProUserOpenOrderDao();
-//        openOrder.error = SatangProErrorDao.fromJson(jsonResponse);
-//      }
-//    }
-
     if (printJson) {
       print(url);
       print("signature = " + signature);
       print("header = " + header.toString());
       print("payloadString = " + payloadString);
-
-//      if (openOrder.isError) {
-//        printPrettyJson(openOrder.error.toJson());
-//      } else {
-//        printPrettyJson(openOrder.toJson());
-//      }
+      print(response.body);
     }
-
-//    return openOrder;
   }
 }
