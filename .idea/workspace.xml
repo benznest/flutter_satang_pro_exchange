@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e98b93f-579a-48ae-a7f6-c29f4401d2a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/satang_pro_currency.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/dao/market_open_order/satang_pro_open_order_item_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dao/market_open_order/satang_pro_open_order_item_dao.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_limit_currency_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_limit_currency_dao.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_wallet_dao.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_wallet_dao.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/satang_pro_currency_manager.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/satang_pro_exchange.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/satang_pro_exchange.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -30,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/satang_pro_exchange.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
+            <state relative-caret-position="574">
+              <caret line="178" selection-start-line="178" selection-end-line="178" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -87,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="60" />
+            <state relative-caret-position="163">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -96,11 +89,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/satang_pro_currency.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="31" selection-start-line="31" selection-end-line="36" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            <state relative-caret-position="285">
+              <caret line="211" column="81" lean-forward="true" selection-start-line="211" selection-start-column="81" selection-end-line="211" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -132,10 +134,10 @@
         <option value="$PROJECT_DIR$/lib/satang_pro_utils.dart" />
         <option value="$PROJECT_DIR$/lib/satang_pro_auth_utils.dart" />
         <option value="$PROJECT_DIR$/lib/satang_pro_currency_manager.dart" />
-        <option value="$PROJECT_DIR$/lib/satang_pro_exchange.dart" />
         <option value="$PROJECT_DIR$/lib/dao/market_open_order/satang_pro_open_order_item_dao.dart" />
         <option value="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_wallet_dao.dart" />
         <option value="$PROJECT_DIR$/lib/dao/user_information/satang_pro_user_limit_currency_dao.dart" />
+        <option value="$PROJECT_DIR$/lib/satang_pro_exchange.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
@@ -230,7 +232,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563463999370</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add readme.">
+      <created>1563555922342</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1563555922342</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add readme.">
+      <created>1563556680969</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1563556680969</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -269,7 +285,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add market open order api." />
     <MESSAGE value="prepare api auth.&#10;waiting HMAC-SHA512 from crypto library." />
-    <option name="LAST_COMMIT_MESSAGE" value="prepare api auth.&#10;waiting HMAC-SHA512 from crypto library." />
+    <MESSAGE value="add readme." />
+    <option name="LAST_COMMIT_MESSAGE" value="add readme." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/satang_pro_open_order_type.dart">
@@ -348,23 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/satang_pro_currency.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/satang_pro_exchange.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/dao/market_open_order/satang_pro_open_order_item_dao.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -407,10 +407,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/satang_pro_currency.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="31" selection-start-line="31" selection-end-line="36" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/satang_pro_exchange.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="60" />
+        <state relative-caret-position="163">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -419,8 +436,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        <state relative-caret-position="285">
+          <caret line="211" column="81" lean-forward="true" selection-start-line="211" selection-start-column="81" selection-end-line="211" selection-end-column="81" />
         </state>
       </provider>
     </entry>

@@ -3,6 +3,7 @@
 Flutter Satang Pro Exchange is a Flutter's library for calling API of the [https://https://satang.pro](https://satang.pro/)
 
 ## Installation
+
 Add dependencies in pubspec.yaml
 
 ```bash
@@ -81,7 +82,7 @@ required permissions : READ/WRITE ORDER.
 
 ## Using Private API
 
-Create instance with 3 API keys different permissions.
+Create instance with 2 API keys and user id.
 Your user id will be in [Developer Menu](https://satang.pro/developers).
 
 ```dart
@@ -94,7 +95,7 @@ var sp = SatangProExchangeService(
 
 ### Get User Information and Wallet
 
-Return user identity such as email, id , verify level and wallet.
+Return user information such as email, user id , verify level and wallet data.
 
 ```dart
   var userInfo = await sp.fetchUserInformation();
@@ -110,7 +111,7 @@ Return user identity such as email, id , verify level and wallet.
   }
 ```
 
-Get balance and address wallet.
+Get balance and wallet's addresses.
 
 ```dart
      var wallets = userInfo.wallets.list;
@@ -122,7 +123,7 @@ Get balance and address wallet.
 ```
 
 
-### Order List
+### Get Order List
 
 Get current order and order history.
 
@@ -171,3 +172,41 @@ Cancel order with order id.
 ```dart
   await sp.cancelOrder(orderId: 1234567);
 ```
+
+## Other uses
+
+Suggestions for other uses.
+
+### Pairing Currency
+
+You can use the atangProCurrency class instead of pair text.
+
+Example
+
+```dart
+var market = await sp.fetchMarketOpenOrders(pair: SatangProCurrency.BTC_THB);
+```
+
+Pair supported.
+
+```dart
+    BTC_THB
+    ETH_THB
+    USDT_THB
+    XLM_THB
+    XRP_THB
+    XZC_THB
+```
+
+
+### Print JSON
+
+display JSON response on console or logcat.
+
+```dart
+await sp.fetchMarketOpenOrders(printJson: true);
+```
+
+## More
+
+This package is UNOFFICIAL and the developer is not related with Satang.pro site.
