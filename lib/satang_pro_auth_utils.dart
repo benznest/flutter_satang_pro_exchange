@@ -8,7 +8,7 @@ import 'package:pointycastle/macs/hmac.dart';
 
 class SatangProAuthUtils {
   static Map<String, String> createHeader({String signature, SatangProApiKey key}) {
-    return {"Signature": "$signature", "Authentication": "TDAX-API ${key.apiKey}"};
+    return {"Signature": signature, "Authorization": "TDAX-API ${key.apiKey}"};
   }
 
   static Uint8List hmacSHA512(Uint8List key, Uint8List data) {
@@ -36,6 +36,6 @@ class SatangProAuthUtils {
   static String generateSignature(SatangProApiKey key, String payload) {
     Uint8List message = createUint8ListFromString("$payload");
     Uint8List keySigning = createUint8ListFromString("${key.secret}");
-    return formatBytesAsHexString(hmacSHA512( message,keySigning));
+    return formatBytesAsHexString(hmacSHA512(keySigning,message));
   }
 }

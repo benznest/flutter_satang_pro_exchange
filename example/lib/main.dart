@@ -6,10 +6,18 @@ import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart'
 import 'package:flutter_satang_pro_exchange/satang_pro_exchange.dart';
 
 Future main() async {
+//  SatangProExchangeService sp = SatangProExchangeService(userId: 7892,
+//      apiKeyGeneral: SatangProApiKey(
+//          apiKey: "live-510d4e8081ec49fabcbc50e13e8db403",
+//          secret:"R3Wj9ar6Rfm95wOvF0bNDfGTl7Y+o0wai+wdyerzEFo="));
+
   SatangProExchangeService sp = SatangProExchangeService(userId: 7892,
       apiKeyGeneral: SatangProApiKey(
-          apiKey: "live-510d4e8081ec49fabcbc50e13e8db403",
-          secret:"R3Wj9ar6Rfm95wOvF0bNDfGTl7Y+o0wai+wdyerzEFo="));
+          apiKey: "live-0e693ba1952e4a618b5f4936a19afd7f",
+          secret:"lJCTDXJTQm+0eLvXBZkiHZHD9E0OZUGAjipCh70OLDA="));
+
+
+
 //  await sp.fetchMarketOpenOrders(printJson: true);
   await sp.fetchUserInformation(printJson: true);
 
