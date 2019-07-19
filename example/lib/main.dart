@@ -19,8 +19,8 @@ Future main() async {
 
 //  await sp.fetchUserInformation(printJson: true);
 
-  await sp.createOrder(orderType: SatangProOrderType.BUY,amount: 0.0005 ,price: 350000, printJson: true);
-  await sp.fetchOrders(printJson: true);
+  await sp.createOrder(orderType: SatangProOrderType.BUY,amount: 0.0005 ,price: 10000, printJson: true);
+  await sp.fetchOrders(orderType: SatangProOrderType.BUY,printJson: true);
 //  await sp.cancelOrder(orderId: 18916446, printJson: true);
 
   runApp(MyApp());

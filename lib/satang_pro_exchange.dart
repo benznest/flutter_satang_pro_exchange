@@ -168,8 +168,8 @@ class SatangProExchangeService {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
     int nonce = getNonce();
-    Map<String, String> payload = {"amount": "$amount", "nonce": "$nonce", "pair": "$pair", "price": "$price", "side": "${fromSatangProOrderTypeToString(orderType)}","type":"market"};
-    String payloadString = "";
+    Map<String, String> payload = {"amount": "$amount", "nonce": "$nonce", "pair": "$pair", "price": "$price", "side": "${fromSatangProOrderTypeToString(orderType)}","type":"limit"};
+    String payloadString = "amount=$amount&nonce=$nonce&pair=$pair&price=$price&side=${fromSatangProOrderTypeToString(orderType)}&type=limit";
 
     String signature = SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
     Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);

@@ -13,5 +13,5 @@ Map decodeJsonUtf8(Response response) {
 }
 
 int getNonce() {
-  return DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  return DateTime.now().millisecondsSinceEpoch;
 }
