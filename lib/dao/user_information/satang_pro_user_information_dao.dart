@@ -1,9 +1,10 @@
 import 'package:flutter_satang_pro_exchange/dao/errors/satang_pro_error_dao.dart';
+import 'package:flutter_satang_pro_exchange/dao/errors/satang_pro_response_error_support.dart';
 import 'package:flutter_satang_pro_exchange/dao/user_information/satang_pro_user_limit_currency_dao.dart';
 import 'package:flutter_satang_pro_exchange/dao/user_information/satang_pro_user_identity_dao.dart';
 import 'package:flutter_satang_pro_exchange/dao/user_information/satang_pro_user_wallet_dao.dart';
 
-class SatangProUserInformationDao {
+class SatangProUserInformationDao extends SatangProResponseErrorSupport{
   int id;
   String email;
   String identityVerificationLevel;
@@ -11,11 +12,9 @@ class SatangProUserInformationDao {
   SatangProUserLimitCurrencyDao limits;
   SatangProUserIdentityDao identity;
 
-  SatangProErrorDao error;
 
-  SatangProUserInformationDao({this.id, this.email, this.identityVerificationLevel, this.wallets, this.limits, this.identity, this.error});
+  SatangProUserInformationDao({this.id, this.email, this.identityVerificationLevel, this.wallets, this.limits, this.identity});
 
-  get isError => error != null;
 
   SatangProUserInformationDao.fromJson(Map<String, dynamic> json) {
     id = json['id'];
