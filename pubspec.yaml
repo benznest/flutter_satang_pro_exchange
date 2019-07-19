@@ -1,8 +1,8 @@
 name: flutter_satang_pro_exchange
-description: A new Flutter plugin.
-version: 0.0.1
-author:
-homepage:
+description: library for calling API of the https://https://satang.pro
+version: 1.0.0
+author: benznest <benz7net@gmail.com>
+homepage: https://github.com/benznest/flutter_satang_pro_exchange
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
