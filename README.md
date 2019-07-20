@@ -7,7 +7,7 @@ Flutter Satang Pro Exchange is a Flutter's library for calling API of the [https
 Add dependencies in pubspec.yaml
 
 ```bash
-flutter_satang_pro_exchange: 1.0.0
+flutter_satang_pro_exchange: 1.0.1
 ```
 
 ## Usage
@@ -159,7 +159,7 @@ Create order to market.
 
 ```dart
   // create order BUY 0.0005 BTC with 100,000 THB
-  await sp.createOrder(pair: "btc_thb",
+  var response = await sp.createOrder(pair: "btc_thb",
       orderType: SatangProOrderType.BUY,
       amount: 0.0005,
       price: 100000);
@@ -170,7 +170,7 @@ Create order to market.
 Cancel order with order id.
 
 ```dart
-  await sp.cancelOrder(orderId: 1234567);
+ var response = await sp.cancelOrder(orderId: 1234567);
 ```
 
 ## Other uses

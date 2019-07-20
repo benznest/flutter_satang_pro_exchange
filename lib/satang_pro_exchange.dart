@@ -141,7 +141,7 @@ class SatangProExchangeService {
 
   /// This is a [private] api.
   /// cancel order that opened.
-  Future cancelOrder({@required int orderId, bool printJson = false}) async {
+  Future<http.Response> cancelOrder({@required int orderId, bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
     Map<String, String> payload = {};
@@ -160,16 +160,19 @@ class SatangProExchangeService {
       print("payloadString = " + payloadString);
       print(response.body);
     }
+
+    return response;
   }
 
   /// This is a [private] api.
   /// Create open orders.
-  Future createOrder({String pair = "btc_thb", @required SatangProOrderType orderType, @required price, @required amount, bool printJson = false}) async {
+  Future<http.Response> createOrder({String pair = "btc_thb", @required SatangProOrderType orderType, @required price, @required amount, bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
     int nonce = getNonce();
     Map<String, String> payload = {"amount": "$amount", "nonce": "$nonce", "pair": "$pair", "price": "$price", "side": "${fromSatangProOrderTypeToString(orderType)}","type":"limit"};
-    String payloadString = "amount=$amount&nonce=$nonce&pair=$pair&price=$price&side=${fromSatangProOrderTypeToString(orderType)}&type=limit";
+    String payloadString = "Amount=$amount&Nonce=$nonce&Pair=$pair&Price=$price&Side=${fromSatangProOrderTypeToString(orderType)}&Type=limit";
+//    String payloadString ="";
 
     String signature = SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
     Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
@@ -177,6 +180,7 @@ class SatangProExchangeService {
     String url = Uri.https(BASE_URL, POINT_API + END_POINT_CREATE_ORDERS).toString();
     http.Response response = await http.post(url, headers: header, body: payload);
 
+    print("statusCode = ${response.statusCode}");
     if (printJson) {
       print(url);
       print("signature = " + signature);
@@ -184,5 +188,7 @@ class SatangProExchangeService {
       print("payloadString = " + payloadString);
       print(response.body);
     }
+
+    return response;
   }
 }
