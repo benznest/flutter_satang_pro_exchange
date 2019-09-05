@@ -12,7 +12,7 @@ class SatangProWalletDao {
     return SatangProWalletDao(
       currency: currency,
       addresses: listAddress.map((i) => i.toString()).toList() ?? List(),
-      availableBalance: double.parse(json["availableBalance"]??0.toString()),
+      availableBalance: double.parse((json["available_balance"] ?? 0 ).toString()),
     );
   }
 

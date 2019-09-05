@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart';
-import 'package:flutter_satang_pro_exchange/dao/market_open_order/satang_pro_market_open_orders_dao.dart';
-import 'package:flutter_satang_pro_exchange/satang_pro_currency.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_exchange.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_order_type.dart';
 
 Future main() async {
+//  SatangProExchangeService sp = SatangProExchangeService(userId: 7892,
+//      apiKeyGeneral: SatangProApiKey(
+//          apiKey: "live-510d4e8081ec49fabcbc50e13e8db403",
+//          secret:"R3Wj9ar6Rfm95wOvF0bNDfGTl7Y+o0wai+wdyerzEFo="));
 
-  var sp = SatangProExchangeService(
+  SatangProExchangeService sp = SatangProExchangeService(
       userId: 7892,
-      apiKeyUserInfo: SatangProApiKey(apiKey: "live-afad41b85f4c4a2388e4925f32f65580", secret: "Bc3EyVTTT5mYNSN/gG1osBJhSaMHa0Tpj1C4tRPSm10="),
-      apiKeyOrder: SatangProApiKey(apiKey: "live-afad41b85f4c4a2388e4925f32f65580", secret: "Bc3EyVTTT5mYNSN/gG1osBJhSaMHa0Tpj1C4tRPSm10="),);
+      apiKeyUserInfo: SatangProApiKey(apiKey: "live-bb7004c453c747dab95fe8b16d5c9a5e", secret: "b34a2Mr3RAqAkHcwnC+OTDeigz71VEFGsYTxtY+limA="));
 
-//  var market = await sp.fetchMarketOpenOrders(pair: SatangProCurrency.BTC_THB);
-//  var myOrders = await sp.fetchOrders(pair: "btc_thb",orderType: SatangProOrderType.BUY, printJson: true);
+  await sp.fetchUserInformation(printJson: true);
 
-  await sp.createOrder(pair: SatangProCurrency.BTC_THB,
-      orderType: SatangProOrderType.BUY,
-      amount: 0.0005,
-      price: 10000);
 
 //  await sp.cancelOrder(orderId: 18916446, printJson: true);
 

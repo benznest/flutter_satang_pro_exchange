@@ -7,7 +7,7 @@ Flutter Satang Pro Exchange is a Flutter's library for calling API of the [https
 Add dependencies in pubspec.yaml
 
 ```bash
-flutter_satang_pro_exchange: 1.0.1
+flutter_satang_pro_exchange: 1.0.2
 ```
 
 ## Usage

@@ -1,3 +1,6 @@
+## 1.0.2
+Fix balance bug.
+
 ## 1.0.1
 
 Return response when create/cancel order.
