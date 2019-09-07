@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart';
 import 'package:flutter_satang_pro_exchange/dao/errors/satang_pro_error_dao.dart';
 import 'package:flutter_satang_pro_exchange/dao/market_open_order/satang_pro_market_open_orders_dao.dart';
+import 'package:flutter_satang_pro_exchange/dao/satang_pro_market_cap_currency_dao.dart';
 import 'package:flutter_satang_pro_exchange/dao/user_information/satang_pro_user_information_dao.dart';
 import 'package:flutter_satang_pro_exchange/dao/user_open_orders/satang_pro_user_open_order_dao.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_auth_utils.dart';
@@ -23,6 +24,7 @@ class SatangProExchangeService {
   static const String END_POINT_MARKET_OPEN_ORDERS = "orders/";
 
   /// Private API
+  static const String END_POINT_MARKET = "marketcap/";
   static const String END_POINT_USER_INFORMATION = "users/";
   static const String END_POINT_OPEN_ORDERS = "orders/user";
   static const String END_POINT_CANCEL_ORDERS = "orders/";
@@ -48,15 +50,36 @@ class SatangProExchangeService {
   ///
   SatangProApiKey apiKeyOrder;
 
-  SatangProExchangeService({this.userId, this.apiKeyUserInfo, this.apiKeyOrder});
+  SatangProExchangeService(
+      {this.userId, this.apiKeyUserInfo, this.apiKeyOrder});
+
+  /// This is a [public] api.
+  /// Get market data (Ticker).
+  Future<List<SatangProMarketCapCurrencyDao>> fetchMarket({bool printJson = false}) async {
+    String url = Uri.https(BASE_URL, POINT_API + END_POINT_MARKET).toString();
+    http.Response response = await http.get(url);
+    var jsonResponse = json.decode(response.body);
+    List<SatangProMarketCapCurrencyDao> list =
+        SatangProMarketCapCurrencyDao.fromListJson(jsonResponse);
+    if (printJson) {
+      print(url);
+      printPrettyJson(
+          {"marketcap": list.map((item) => item.toJson()).toList()});
+    }
+    return list;
+  }
 
   /// This is a [public] api.
   /// Get market open order bids and asks.
-  Future<SatangProMarketOpenOrdersDao> fetchMarketOpenOrders({String pair = "btc_thb", bool printJson = false}) async {
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_MARKET_OPEN_ORDERS, {"pair": pair}).toString();
+  Future<SatangProMarketOpenOrdersDao> fetchMarketOpenOrders(
+      {String pair = "btc_thb", bool printJson = false}) async {
+    String url = Uri.https(
+            BASE_URL, POINT_API + END_POINT_MARKET_OPEN_ORDERS, {"pair": pair})
+        .toString();
     http.Response response = await http.get(url);
     var jsonResponse = json.decode(response.body);
-    SatangProMarketOpenOrdersDao dao = SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
+    SatangProMarketOpenOrdersDao dao =
+        SatangProMarketOpenOrdersDao.fromJson(jsonResponse);
     if (printJson) {
       print(url);
       printPrettyJson(dao.toJson());
@@ -66,16 +89,21 @@ class SatangProExchangeService {
 
   /// This is a [private] api.
   /// Get user's wallet info.
-  Future<SatangProUserInformationDao> fetchUserInformation({bool printJson = false}) async {
+  Future<SatangProUserInformationDao> fetchUserInformation(
+      {bool printJson = false}) async {
     assert(apiKeyUserInfo != null, "Must provide User Info API KEY.");
     int nonce = getNonce();
 
     Map<String, String> payload = {};
     String payloadString = "";
 
-    String signature = SatangProAuthUtils.generateSignature(apiKeyUserInfo, payloadString);
-    Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyUserInfo);
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_USER_INFORMATION + "$userId", payload).toString();
+    String signature =
+        SatangProAuthUtils.generateSignature(apiKeyUserInfo, payloadString);
+    Map header = SatangProAuthUtils.createHeader(
+        signature: signature, key: apiKeyUserInfo);
+    String url = Uri.https(BASE_URL,
+            POINT_API + END_POINT_USER_INFORMATION + "$userId", payload)
+        .toString();
     http.Response response = await http.get(url, headers: header);
     var jsonResponse = json.decode(response.body);
     SatangProUserInformationDao dao;
@@ -99,16 +127,30 @@ class SatangProExchangeService {
   /// This is a [private] api.
   /// Get orders (cancelled/open/created/completed).
   Future<SatangProUserOpenOrderDao> fetchOrders(
-      {int limit = 100, int offset = 0, String pair = "btc_thb", SatangProOrderType orderType = SatangProOrderType.SELL, String status = "all", bool printJson = false}) async {
+      {int limit = 100,
+      int offset = 0,
+      String pair = "btc_thb",
+      SatangProOrderType orderType = SatangProOrderType.SELL,
+      String status = "all",
+      bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
-    Map<String, String> payload = {"limit": "$limit", "offset": "$offset", "pair": "$pair", "side": "${fromSatangProOrderTypeToString(orderType)}", "status": "$status"};
+    Map<String, String> payload = {
+      "limit": "$limit",
+      "offset": "$offset",
+      "pair": "$pair",
+      "side": "${fromSatangProOrderTypeToString(orderType)}",
+      "status": "$status"
+    };
     String payloadString = "";
 
-    String signature = SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
-    Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
+    String signature =
+        SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
+    Map header =
+        SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
 
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_OPEN_ORDERS, payload).toString();
+    String url = Uri.https(BASE_URL, POINT_API + END_POINT_OPEN_ORDERS, payload)
+        .toString();
     http.Response response = await http.get(url, headers: header);
 
     SatangProUserOpenOrderDao openOrder;
@@ -141,16 +183,21 @@ class SatangProExchangeService {
 
   /// This is a [private] api.
   /// cancel order that opened.
-  Future<http.Response> cancelOrder({@required int orderId, bool printJson = false}) async {
+  Future<http.Response> cancelOrder(
+      {@required int orderId, bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
     Map<String, String> payload = {};
     String payloadString = "";
 
-    String signature = SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
-    Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
+    String signature =
+        SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
+    Map header =
+        SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
 
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_CANCEL_ORDERS + "$orderId", payload).toString();
+    String url = Uri.https(
+            BASE_URL, POINT_API + END_POINT_CANCEL_ORDERS + "$orderId", payload)
+        .toString();
     http.Response response = await http.delete(url, headers: header);
 
     if (printJson) {
@@ -166,19 +213,36 @@ class SatangProExchangeService {
 
   /// This is a [private] api.
   /// Create open orders.
-  Future<http.Response> createOrder({String pair = "btc_thb", @required SatangProOrderType orderType, @required price, @required amount, bool printJson = false}) async {
+  Future<http.Response> createOrder(
+      {String pair = "btc_thb",
+      @required SatangProOrderType orderType,
+      @required price,
+      @required amount,
+      bool printJson = false}) async {
     assert(apiKeyOrder != null, "Must provide Order API KEY.");
 
     int nonce = getNonce();
-    Map<String, String> payload = {"amount": "$amount", "nonce": "$nonce", "pair": "$pair", "price": "$price", "side": "${fromSatangProOrderTypeToString(orderType)}","type":"limit"};
-    String payloadString = "Amount=$amount&Nonce=$nonce&Pair=$pair&Price=$price&Side=${fromSatangProOrderTypeToString(orderType)}&Type=limit";
+    Map<String, String> payload = {
+      "amount": "$amount",
+      "nonce": "$nonce",
+      "pair": "$pair",
+      "price": "$price",
+      "side": "${fromSatangProOrderTypeToString(orderType)}",
+      "type": "limit"
+    };
+    String payloadString =
+        "Amount=$amount&Nonce=$nonce&Pair=$pair&Price=$price&Side=${fromSatangProOrderTypeToString(orderType)}&Type=limit";
 //    String payloadString ="";
 
-    String signature = SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
-    Map header = SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
+    String signature =
+        SatangProAuthUtils.generateSignature(apiKeyOrder, payloadString);
+    Map header =
+        SatangProAuthUtils.createHeader(signature: signature, key: apiKeyOrder);
 
-    String url = Uri.https(BASE_URL, POINT_API + END_POINT_CREATE_ORDERS).toString();
-    http.Response response = await http.post(url, headers: header, body: payload);
+    String url =
+        Uri.https(BASE_URL, POINT_API + END_POINT_CREATE_ORDERS).toString();
+    http.Response response =
+        await http.post(url, headers: header, body: payload);
 
     print("statusCode = ${response.statusCode}");
     if (printJson) {

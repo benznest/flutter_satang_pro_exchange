@@ -1,3 +1,6 @@
+## 1.1.0
+Add marketcap API.
+
 ## 1.0.2
 Fix balance bug.
 

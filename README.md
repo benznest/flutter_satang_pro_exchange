@@ -7,7 +7,7 @@ Flutter Satang Pro Exchange is a Flutter's library for calling API of the [https
 Add dependencies in pubspec.yaml
 
 ```bash
-flutter_satang_pro_exchange: 1.0.2
+flutter_satang_pro_exchange: 1.1.0
 ```
 
 ## Usage
@@ -26,6 +26,22 @@ Create instance without API Key.
 var sp = SatangProExchangeService();
 ```
 
+### Get Market cap.
+last coin price , volume , percent change.
+
+```dart
+  var market = await sp.fetchMarket();
+      market.avg24hr;
+      market.baseVolume;
+      market.high24hr;
+      market.highestBid;
+      market.last;
+      market.low24hr;
+      market.lowestAsk;
+      market.percentChange;
+      market.quoteVolume;
+}
+```
 
 ### Get Open Order in Market
 
@@ -37,8 +53,6 @@ This is a public API. you can access JSON in [https://api.tdax.com/api/orders/?p
 [GET]
 https://api.tdax.com/api/orders/?pair=SYMBOL
 ```
-
-Using in Flutter.
 
 ```dart
   SatangProMarketOpenOrdersDao market = await sp.fetchMarketOpenOrders(pair: "btc_thb");
