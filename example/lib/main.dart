@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_satang_pro_exchange/dao/api_key/satang_pro_api_key.dart';
 import 'package:flutter_satang_pro_exchange/satang_pro_exchange.dart';
-import 'package:flutter_satang_pro_exchange/satang_pro_order_type.dart';
 
 Future main() async {
 

@@ -1,6 +1,6 @@
 name: flutter_satang_pro_exchange
 description: library for calling API of the https://https://satang.pro
-version: 1.1.0
+version: 1.1.1
 author: benznest <benz7net@gmail.com>
 homepage: https://github.com/benznest/flutter_satang_pro_exchange
 
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http:  ^0.12.0+2
+  http:  0.12.2
   pointycastle:  ^1.0.1
 
 dev_dependencies:

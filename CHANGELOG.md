@@ -1,5 +1,9 @@
+
+## 1.1.1
+add check available API key.
+
 ## 1.1.0
-Add marketcap API.
+Add market cap API.
 
 ## 1.0.2
 Fix balance bug.
